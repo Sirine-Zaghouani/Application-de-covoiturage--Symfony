@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h1>Liste des annonces</h1>
+    {% for a in LesAnnonces  %}
+        <td>{{ a.getLieuDepart }}</td><br>
+        <td>{{ a.getLieuArrivee }}</td><br>
+        <td>{{ a.getDateDepart|date }}</td><br>
+        <td>{{ a.getHeureDepart|date}}</td><br>
+        <td>{{ a.getNombrePlace }}</td><br>
+        <td>{{ a.getPrix}}</td><br>
+        <td>{{ a.getDescription }}</td><br>
+        <hr>
+    {% endfor %}
+    <h1>Liste des demandes</h1>
+    {% for d in LesDemandes %}
+        <td>{{ d.getLieuDepart }}</td><br>
+        <td>{{ d.getLieuArrivee }}</td><br>
+        <td>{{ d.getDateDepart|date }}</td><br>
+        <td>{{ d.getHeureDepart|date}}</td><br>
+        <td>{{ d.getNombrePlace }}</td><br>
+        <td>{{ d.getDescription }}</td><br>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

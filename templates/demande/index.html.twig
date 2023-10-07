@@ -1,0 +1,74 @@
+
+{% block body %}
+    {{ include('admin/index.html.twig') }}
+
+<div class="container-xl" style="margin-left: 250px ; width: 1200px ;margin-top: -600px " >
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Les <b>Demandes</b></h2></div>
+                    <div class="col-sm-4">
+                        <div class="search-box">
+                            <form method="post" >
+                                <i  type="submit" value="Recherche" class="material-icons" >&#xE8B6;</i>
+                                <input   type="text" class="form-control" name="nom" placeholder="Search&hellip;">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lieu_depart</th>
+                <th>Lieu_arrivee</th>
+                <th>Date_depart</th>
+                <th>Heure_depart</th>
+                <th>Nombre_place</th>
+                <th>Description</th>
+                <th>user</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.lieuDepart }}</td>
+                <td>{{ demande.lieuArrivee }}</td>
+                <td>{{ demande.dateDepart ? demande.dateDepart|date('Y-m-d') : '' }}</td>
+                <td>{{ demande.heureDepart ? demande.heureDepart|date('H:i:s') : '' }}</td>
+                <td>{{ demande.nombrePlace }}</td>
+                <td>{{ demande.description }}</td>
+                <td>{{ demande.user.getNom }}  {{ demande.user.getPrenom }}</td>
+                <td>
+                    <a href="{{ path('app_demande_show', {'id': demande.id}) }}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                    <a href="{{ path('app_demande_delete', {'id': demande.id}) }}"class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

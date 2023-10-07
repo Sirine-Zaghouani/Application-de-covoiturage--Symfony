@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<h1>Liste des annonces</h1>
+{% for a in MesAnnonces  %}
+    <td>{{ a.getLieuDepart }}</td><br>
+    <td>{{ a.getLieuArrivee }}</td><br>
+    <td>{{ a.getDateDepart|date }}</td><br>
+    <td>{{ a.getHeureDepart|date}}</td><br>
+    <td>{{ a.getNombrePlace }}</td><br>
+    <td>{{ a.getPrix}}</td><br>
+    <td>{{ a.getDescription }}</td><br>
+    <td><a href="{{ path("AnnonceDelete",{'id': a.getId}) }}">Supprimer</a></td><br>
+    <td><a href="{{ path("AnnonceUpdate",{'id': a.getId}) }}">Modifier</a></td><br>
+    <hr>
+{% endfor %}
+    <h1>Liste des demandes</h1>
+    {% for d in MesDemandes %}
+    <td>{{ d.getLieuDepart }}</td><br>
+    <td>{{ d.getLieuArrivee }}</td><br>
+    <td>{{ d.getDateDepart|date }}</td><br>
+    <td>{{ d.getHeureDepart|date}}</td><br>
+    <td>{{ d.getNombrePlace }}</td><br>
+    <td>{{ d.getDescription }}</td><br>
+        <td><a href="{{ path("DemandeDelete",{'id': d.getId}) }}">Supprimer</a></td> <br>
+        <td><a href="{{ path("DemandeUpdate",{'id': d.getId}) }}">Modifier</a></td> <br>
+
+        <hr>
+    {% endfor %}
+
+{% endblock %}

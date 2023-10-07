@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter Annonce{% endblock %}
+
+{% block content %}
+<h1>Ajout Annonce</h1>
+
+    </script>
+    <input type="radio" id="contactChoice1"
+           name="contact" value="conducteur" checked>
+    <label for="contactChoice1">Je suis conducteur(rice)  </label>
+
+    <input type="radio" id="contactChoice2"
+           name="contact" value="passager" style="margin-left: 40px">
+    <label for="contactChoice2">Je suis passager(ère)  </label>
+    {{ form(formAnnonce) }}
+    <hr>
+    {{ form(formDemande) }}
+
+
+{% endblock %}

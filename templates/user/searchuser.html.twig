@@ -1,0 +1,66 @@
+
+{% block body  %}
+    {{ include('admin/index.html.twig') }}
+
+<div class="container-xl" style="margin-left: 250px ; width: 1200px ;margin-top: -600px " >
+    <div class="table-responsive">
+        <div class="table-wrapper">
+        {{ include('') }}
+
+         {% if users is empty %}
+            Aucune User trouvée
+         {% else%}
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Adresse</th>
+                    <th>Civilite</th>
+                    <th>Profession</th>
+                    <th>Telephone</th>
+                    <th>Naissance</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.adresse }}</td>
+                        <td>{{ user.civilite }}</td>
+                        <td>{{ user.profession }}</td>
+                        <td>{{ user.telephone }}</td>
+                        <td>{{ user.naissance ? user.naissance|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_user_show', {'id': user.id}) }}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
